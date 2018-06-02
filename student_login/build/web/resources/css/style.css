@@ -1,0 +1,14 @@
+/* 
+    Created on : 03-jun-2018, 1:14:48
+    Author     : Tobias
+*/
+body
+{
+    font-family: Calibri, Arial;
+}
+
+.error
+{
+    color: red;
+    font-weight: bold;
+}
