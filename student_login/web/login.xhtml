@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>DAW JSF Ejercicio 1 - Login de estudiantes</title>
+    </h:head>
+    <h:body>
+        <h1>Login de estudiantes</h1>
+        <h:form>
+            <p>
+                Usuario:
+                <h:inputText value="#{beanGraduatingUser.username}" required="true">
+                    <f:validateLength minimum="8" />
+                </h:inputText>
+            </p>
+            <p>
+                Titulación:
+                <h:inputText value="#{beanGraduatingUser.degreeProgram}" required="true" />
+            </p>
+            <p>
+                Año de terminación:
+                <h:inputText value="#{beanGraduatingUser.graduationYear}">
+                    <f:convertNumber integerOnly="true" />
+                    <f:validateLongRange minimum="1900" maximum="2016" />
+                </h:inputText>
+            </p>
+            <h:commandButton value="Enviar" action="login_data" />
+        </h:form>
+    </h:body>
+</html>
