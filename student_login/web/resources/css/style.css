@@ -5,10 +5,28 @@
 body
 {
     font-family: Calibri, Arial;
+    font-size: 18px;
 }
 
 .error
 {
-    color: red;
+    color: orange;
     font-weight: bold;
+}
+
+.list
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.listContainer
+{
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.listItem
+{
+    padding: 5px 10px;
 }
