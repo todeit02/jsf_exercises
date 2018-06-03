@@ -1,0 +1,29 @@
+button
+{
+    border
+}
+
+label
+{
+    display: block;
+}
+
+    input[type="checkbox"] ~ label
+    {
+        display: initial;
+    }
+
+.blockContainer > *
+{
+    display: block;
+}
+
+.verticallyWideMargined
+{
+    margin: 1em 0;
+}
+
+.verticallyNarrowMargined
+{
+    margin: 0.5em 0;
+}
