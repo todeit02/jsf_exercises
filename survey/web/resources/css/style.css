@@ -1,8 +1,3 @@
-button
-{
-    border
-}
-
 label
 {
     display: block;
@@ -13,9 +8,32 @@ label
         display: initial;
     }
 
-.blockContainer > *
+.allMaxChildWidthContainer
 {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+    .allMaxChildWidthContainer > *
+    {
+        width: 100%;
+    }
+    
+.borderedTable, .borderedTable th, .borderedTable td
+{
+   border: 1px solid black;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+.error
+{
+    color: red;
     display: block;
+    font-weight: bold;
 }
 
 .verticallyWideMargined
@@ -26,4 +44,21 @@ label
 .verticallyNarrowMargined
 {
     margin: 0.5em 0;
+}
+
+#flagsContainer
+{
+    float: right;
+}
+
+#flagsContainer img
+{
+    height: 4vw;
+    margin: 0 0.2vw;
+    min-height: 30px;
+}
+
+#flagsContainer img:last-child
+{
+    margin-right: 0;
 }

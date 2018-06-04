@@ -10,15 +10,31 @@
     </h:head>
     <h:body>
         <h1 jsf:id="heading">${strings['answers.heading']}</h1>
-            
-        <h:outputFormat value="${strings['answers.birthMonthSentence']}">
-            <f:param value="${beanSurveyResult.birthMonth}" />
-        </h:outputFormat>
-            
-        <h:outputFormat value="${strings['answers.remainingSubjectsCountSentence']}">
-            <f:param value="${beanSurveyResult.remainingSubjectsCount}" />
-        </h:outputFormat>
         
-        <h:outputLink value="survey.xhtml">${strings['answers.returnToStartPage']}</h:outputLink>
+        <p>
+            <h:outputFormat value="${strings['answers.birthMonthSentence']}">
+                <f:param value="${beanSurveyResult.birthMonth}" />
+            </h:outputFormat>
+        </p>
+        
+        <div class="allMaxChildWidthContainer">
+            <h:outputText styleClass="bold" value="${strings['answers.favoriteColors']}" />
+            <h:dataTable styleClass="borderedTable" value="#{beanSurveyResult.favoriteColors}" var="color">
+                <h:column>
+                    <f:facet name="header">${strings['colors.word']}</f:facet>
+                    #{color}
+                </h:column>
+            </h:dataTable>
+        </div>
+        
+        <p>
+            <h:outputFormat value="${strings['answers.remainingSubjectsCountSentence']}" rendered="${!beanSurveyResult.graduated}">
+                <f:param value="${beanSurveyResult.remainingSubjectsCount}" />
+            </h:outputFormat>
+            <h:outputText value="${strings['answers.remainingSubjectsNoneSentence']}" rendered="${beanSurveyResult.graduated}" />
+        </p>
+        <p>
+            <h:outputLink value="survey.xhtml">${strings['answers.returnToStartPage']}</h:outputLink>
+        </p>
     </h:body>
 </html>
