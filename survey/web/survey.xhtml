@@ -5,91 +5,93 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
-    <h:head>
-        <h:outputStylesheet library="css" name="style.css" />
-        <title jsf:id="title">${strings['siteTitle']} - ${strings['survey.pageTitle']}</title>
-    </h:head>
-    <h:body>
-        <div id="flagsContainer">
+    <f:view locale="${beanLanguage.locale}">
+        <h:head>
+            <h:outputStylesheet library="css" name="style.css" />
+            <title jsf:id="title">${strings['siteTitle']} - ${strings['survey.pageTitle']}</title>
+        </h:head>
+        <h:body>
+            <div id="flagsContainer">
+                <h:form>
+                    <h:commandLink action="#{beanLanguage.setLanguage('es')}">
+                        <h:graphicImage value="resources/images/flag_es.png" alt="Español" />
+                    </h:commandLink>
+                    <h:commandLink action="#{beanLanguage.setLanguage('en')}">
+                        <h:graphicImage value="resources/images/flag_en.png" alt="English" />
+                    </h:commandLink>
+                    <h:commandLink action="#{beanLanguage.setLanguage('de')}">
+                        <h:graphicImage value="resources/images/flag_de.png" alt="Deutsch" />
+                    </h:commandLink>
+                </h:form>
+            </div>
+
+            <h1 jsf:id="heading">${strings['survey.heading']}</h1>
             <h:form>
-                <h:commandLink action="#{beanLanguage.setLanguage('es')}">
-                    <h:graphicImage value="resources/images/flag_es.png" alt="Español" />
-                </h:commandLink>
-                <h:commandLink action="#{beanLanguage.setLanguage('en')}">
-                    <h:graphicImage value="resources/images/flag_en.png" alt="English" />
-                </h:commandLink>
-                <h:commandLink action="#{beanLanguage.setLanguage('de')}">
-                    <h:graphicImage value="resources/images/flag_de.png" alt="Deutsch" />
-                </h:commandLink>
+                <div class="verticallyWideMargined">
+                    <h:outputLabel for="birthMonthMenu" value="${strings['survey.birthMonthLabel']}" />
+                    <h:selectOneMenu id="birthMonthMenu" value="#{beanSurveyResult.birthMonth}">
+                        <f:selectItem itemValue = "${strings['months.january.name']}" itemLabel = "${strings['months.january.name']}" />
+                        <f:selectItem itemValue = "${strings['months.february.name']}" itemLabel = "${strings['months.february.name']}" />
+                        <f:selectItem itemValue = "${strings['months.march.name']}" itemLabel = "${strings['months.march.name']}" />
+                        <f:selectItem itemValue = "${strings['months.april.name']}" itemLabel = "${strings['months.april.name']}" />
+                        <f:selectItem itemValue = "${strings['months.may.name']}" itemLabel = "${strings['months.may.name']}" />
+                        <f:selectItem itemValue = "${strings['months.june.name']}" itemLabel = "${strings['months.june.name']}" />
+                        <f:selectItem itemValue = "${strings['months.july.name']}" itemLabel = "${strings['months.july.name']}" />
+                        <f:selectItem itemValue = "${strings['months.august.name']}" itemLabel = "${strings['months.august.name']}" />
+                        <f:selectItem itemValue = "${strings['months.september.name']}" itemLabel = "${strings['months.september.name']}" />
+                        <f:selectItem itemValue = "${strings['months.october.name']}" itemLabel = "${strings['months.october.name']}" />
+                        <f:selectItem itemValue = "${strings['months.november.name']}" itemLabel = "${strings['months.november.name']}" />
+                        <f:selectItem itemValue = "${strings['months.december.name']}" itemLabel = "${strings['months.december.name']}" />
+                    </h:selectOneMenu>
+                </div>
+
+                <div class="verticallyWideMargined">
+                    <h:message for="favoriteColorsCheckboxes" styleClass="error" />
+                    <h:outputLabel for="favoriteColorsCheckboxes" value="${strings['survey.favoriteColorsLabel']}" />
+                    <h:selectManyCheckbox id="favoriteColorsCheckboxes" value = "#{beanSurveyResult.favoriteColors}" required="true"
+                                          requiredMessage="${messages['survey.favoriteColorsCheckboxes.requiredError']}" >
+                        <f:selectItem itemValue = "${strings['colors.red.name']}" itemLabel = "${strings['colors.red.name']}" /> 
+                        <f:selectItem itemValue = "${strings['colors.blue.name']}" itemLabel = "${strings['colors.blue.name']}" /> 
+                        <f:selectItem itemValue = "${strings['colors.yellow.name']}" itemLabel = "${strings['colors.yellow.name']}" /> 
+                        <f:selectItem itemValue = "${strings['colors.green.name']}" itemLabel = "${strings['colors.green.name']}" /> 
+                        <f:selectItem itemValue = "${strings['colors.orange.name']}" itemLabel = "${strings['colors.orange.name']}" /> 
+                        <f:selectItem itemValue = "${strings['colors.black.name']}" itemLabel = "${strings['colors.black.name']}" /> 
+                    </h:selectManyCheckbox>
+                </div>
+
+                <div class="verticallyWideMargined">
+                    <h:inputHidden id="subjectCountSelectionValidatorSection">
+                        <f:validator validatorId="subjectCountSelectionValidator" />
+                            <f:attribute name="checkboxGraduated" value="#{checkboxGraduated}" />
+                            <f:attribute name="remainingSubjectsListbox" value="#{remainingSubjectsListbox}" />  
+                    </h:inputHidden>
+
+                    <div class="verticallyNarrowMargined">
+                        <h:message for="subjectCountSelectionValidatorSection" styleClass="error" />
+                        <h:outputText value="${strings['survey.remainingSubjectsLabel']}" />
+                    </div>
+
+                    <div class="verticallyNarrowMargined">
+                        <h:selectBooleanCheckbox id="checkboxGraduated" value="#{beanSurveyResult.graduated}" binding="#{checkboxGraduated}" />
+                        <h:outputLabel for="checkboxGraduated" value="${strings['survey.checkboxNoneLabel']}" />
+                    </div>                
+
+                    <div class="verticallyNarrowMargined">
+                        <h:selectOneListbox id="remainingSubjectsListbox" value="#{beanSurveyResult.remainingSubjectsCount}" binding="#{remainingSubjectsListbox}"> 
+                            <f:selectItem /> 
+                            <f:selectItem itemValue = "2" itemLabel = "${strings['numbers.2.word']}" /> 
+                            <f:selectItem itemValue = "3" itemLabel = "${strings['numbers.3.word']}" /> 
+                            <f:selectItem itemValue = "4" itemLabel = "${strings['numbers.4.word']}" /> 
+                            <f:selectItem itemValue = "5" itemLabel = "${strings['numbers.5.word']} ${strings['answers.numberOrMore']}" />
+
+                        </h:selectOneListbox>  
+                    </div>
+                </div>
+
+                <div class="verticallyWideMargined">
+                    <h:commandButton value="${strings['survey.showDataButtonLabel']}" action="answers" />
+                </div>
             </h:form>
-        </div>
-
-        <h1 jsf:id="heading">${strings['survey.heading']}</h1>
-        <h:form>
-            <div class="verticallyWideMargined">
-                <h:outputLabel for="birthMonthMenu" value="${strings['survey.birthMonthLabel']}" />
-                <h:selectOneMenu id="birthMonthMenu" value="#{beanSurveyResult.birthMonth}">
-                    <f:selectItem itemValue = "${strings['months.january.name']}" itemLabel = "${strings['months.january.name']}" />
-                    <f:selectItem itemValue = "${strings['months.february.name']}" itemLabel = "${strings['months.february.name']}" />
-                    <f:selectItem itemValue = "${strings['months.march.name']}" itemLabel = "${strings['months.march.name']}" />
-                    <f:selectItem itemValue = "${strings['months.april.name']}" itemLabel = "${strings['months.april.name']}" />
-                    <f:selectItem itemValue = "${strings['months.may.name']}" itemLabel = "${strings['months.may.name']}" />
-                    <f:selectItem itemValue = "${strings['months.june.name']}" itemLabel = "${strings['months.june.name']}" />
-                    <f:selectItem itemValue = "${strings['months.july.name']}" itemLabel = "${strings['months.july.name']}" />
-                    <f:selectItem itemValue = "${strings['months.august.name']}" itemLabel = "${strings['months.august.name']}" />
-                    <f:selectItem itemValue = "${strings['months.september.name']}" itemLabel = "${strings['months.september.name']}" />
-                    <f:selectItem itemValue = "${strings['months.october.name']}" itemLabel = "${strings['months.october.name']}" />
-                    <f:selectItem itemValue = "${strings['months.november.name']}" itemLabel = "${strings['months.november.name']}" />
-                    <f:selectItem itemValue = "${strings['months.december.name']}" itemLabel = "${strings['months.december.name']}" />
-                </h:selectOneMenu>
-            </div>
-
-            <div class="verticallyWideMargined">
-                <h:message for="favoriteColorsCheckboxes" styleClass="error" />
-                <h:outputLabel for="favoriteColorsCheckboxes" value="${strings['survey.favoriteColorsLabel']}" />
-                <h:selectManyCheckbox id="favoriteColorsCheckboxes" value = "#{beanSurveyResult.favoriteColors}" required="true"
-                                      requiredMessage="${messages['survey.favoriteColorsCheckboxes.requiredError']}" >
-                    <f:selectItem itemValue = "${strings['colors.red.name']}" itemLabel = "${strings['colors.red.name']}" /> 
-                    <f:selectItem itemValue = "${strings['colors.blue.name']}" itemLabel = "${strings['colors.blue.name']}" /> 
-                    <f:selectItem itemValue = "${strings['colors.yellow.name']}" itemLabel = "${strings['colors.yellow.name']}" /> 
-                    <f:selectItem itemValue = "${strings['colors.green.name']}" itemLabel = "${strings['colors.green.name']}" /> 
-                    <f:selectItem itemValue = "${strings['colors.orange.name']}" itemLabel = "${strings['colors.orange.name']}" /> 
-                    <f:selectItem itemValue = "${strings['colors.black.name']}" itemLabel = "${strings['colors.black.name']}" /> 
-                </h:selectManyCheckbox>
-            </div>
-
-            <div class="verticallyWideMargined">
-                <h:inputHidden id="subjectCountSelectionValidatorSection">
-                    <f:validator validatorId="subjectCountSelectionValidator" />
-                        <f:attribute name="checkboxGraduated" value="#{checkboxGraduated}" />
-                        <f:attribute name="remainingSubjectsListbox" value="#{remainingSubjectsListbox}" />  
-                </h:inputHidden>
-
-                <div class="verticallyNarrowMargined">
-                    <h:message for="subjectCountSelectionValidatorSection" styleClass="error" />
-                    <h:outputText value="${strings['survey.remainingSubjectsLabel']}" />
-                </div>
-
-                <div class="verticallyNarrowMargined">
-                    <h:selectBooleanCheckbox id="checkboxGraduated" value="#{beanSurveyResult.graduated}" binding="#{checkboxGraduated}" />
-                    <h:outputLabel for="checkboxGraduated" value="${strings['survey.checkboxNoneLabel']}" />
-                </div>                
-
-                <div class="verticallyNarrowMargined">
-                    <h:selectOneListbox id="remainingSubjectsListbox" value="#{beanSurveyResult.remainingSubjectsCount}" binding="#{remainingSubjectsListbox}"> 
-                        <f:selectItem /> 
-                        <f:selectItem itemValue = "2" itemLabel = "${strings['numbers.2.word']}" /> 
-                        <f:selectItem itemValue = "3" itemLabel = "${strings['numbers.3.word']}" /> 
-                        <f:selectItem itemValue = "4" itemLabel = "${strings['numbers.4.word']}" /> 
-                        <f:selectItem itemValue = "5" itemLabel = "${strings['numbers.5.word']} ${strings['answers.numberOrMore']}" />
-
-                    </h:selectOneListbox>  
-                </div>
-            </div>
-
-            <div class="verticallyWideMargined">
-                <h:commandButton value="${strings['survey.showDataButtonLabel']}" action="answers" />
-            </div>
-        </h:form>
-    </h:body>
+        </h:body>
+    </f:view>
 </html>
