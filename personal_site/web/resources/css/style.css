@@ -1,0 +1,63 @@
+.allMaxChildWidthContainer
+{
+    display: inline-flex;
+    flex-direction: column;
+}
+
+    .allMaxChildWidthContainer > *
+    {
+        width: 100%;
+    }
+    
+.borderedTable, .borderedTable th, .borderedTable td
+{
+   border: 1px solid black;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+.header
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.header > div
+{
+    flex-grow: 1;
+}
+
+.verticallyWideMargined
+{
+    margin: 1em 0;
+}
+
+.verticallyNarrowMargined
+{
+    margin: 0.5em 0;
+}
+
+#flagsContainer
+{
+    flex-grow: 0;
+}
+
+#flagsContainer img
+{
+    height: 4vw;
+    margin: 0 0.2vw;
+    min-height: 30px;
+}
+
+#flagsContainer img:last-child
+{
+    margin-right: 0;
+}
+
+#navigation a
+{
+    padding: 0 0.5em;
+}
