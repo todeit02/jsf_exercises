@@ -12,14 +12,20 @@
                 </div>
                 <div id="flagsContainer">
                     <h:form>
-                        <h:commandLink action="${localeManager.language('es')}">
-                            <h:graphicImage value="resources/images/flag_es.png" alt="Español" />
+                        <h:commandLink action="${localeManager.setLanguage('es')}">
+                            <div class="tintOnHover">
+                                <h:graphicImage value="resources/images/flag_es.png" alt="Español" />
+                            </div>
                         </h:commandLink>
                         <h:commandLink action="${localeManager.setLanguage('en')}">
-                            <h:graphicImage value="resources/images/flag_en.png" alt="English" />
+                            <div class="tintOnHover">
+                                <h:graphicImage value="resources/images/flag_en.png" alt="English" />
+                            </div>
                         </h:commandLink>
                         <h:commandLink action="${localeManager.setLanguage('de')}">
-                            <h:graphicImage value="resources/images/flag_de.png" alt="Deutsch" />
+                            <div class="tintOnHover">
+                                <h:graphicImage value="resources/images/flag_de.png" alt="Deutsch" />
+                            </div>
                         </h:commandLink>
                     </h:form>
                 </div>

@@ -5,11 +5,21 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:body>
         <ui:composition>
-            <h:link value="${strings['presentation.pageTitle']}" outcome="presentation" />
-            <h:link value="${strings['education.pageTitle']}" outcome="education" />
-            <h:link value="${strings['workExperience.pageTitle']}" outcome="work_experience" />
-            <h:link value="${strings['languages.pageTitle']}" outcome="languages" />
-            <h:link value="${strings['hobbies.pageTitle']}" outcome="hobbies" />
+            <div>
+                <h:link value="${strings['presentation.pageTitle']}" outcome="presentation" />
+            </div>
+            <div>
+                <h:link value="${strings['education.pageTitle']}" outcome="education" />
+            </div>
+            <div>
+                <h:link value="${strings['workExperience.pageTitle']}" outcome="work_experience" />
+            </div>
+            <div>
+                <h:link value="${strings['languages.pageTitle']}" outcome="languages" />
+            </div>
+            <div>
+                <h:link value="${strings['hobbies.pageTitle']}" outcome="hobbies" />
+            </div>
         </ui:composition>
     </h:body>
 </html>
